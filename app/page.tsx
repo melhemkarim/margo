@@ -152,7 +152,7 @@ export default function Page() {
 
             {/* SUBTITLE */}
             <p className="mx-auto mt-8 max-w-2xl px-2 text-base leading-relaxed text-[#6f6758] sm:text-lg md:text-2xl">
-              A dreamy birthday escape 
+              A dreamy birthday escape
             </p>
 
             
