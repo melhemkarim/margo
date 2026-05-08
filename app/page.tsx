@@ -100,7 +100,11 @@ export default function Page() {
         ease: "linear",
       }}
     >
-      🌼
+      <img
+  src="/daisy.png"
+  alt="daisy"
+  className="h-10 w-10 object-contain"
+/>
     </motion.div>
   ))}
 </div>
@@ -126,7 +130,11 @@ export default function Page() {
                   </p>
 
                   <h1 className="font-serif text-4xl">
-                    Margo’s Day 🌼
+                    Margo’s Day <img
+  src="/daisy.png"
+  alt="daisy"
+  className="h-10 w-10 object-contain"
+/>
                   </h1>
 
                   <p className="mt-4 text-sm text-[#6f6758]">
@@ -155,7 +163,11 @@ export default function Page() {
 
             {/* HAPPY BIRTHDAY */}
             <p className="mb-6 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
-              HAPPY BIRTHDAY MARGO 🌼
+              HAPPY BIRTHDAY MARGO <img
+  src="/daisy.png"
+  alt="daisy"
+  className="h-10 w-10 object-contain"
+/>
             </p>
 
             {/* TITLE */}
@@ -217,7 +229,11 @@ export default function Page() {
             {/* HEADER */}
             <div className="mx-auto mb-20 max-w-5xl text-center">
               <p className="mb-4 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
-                HAPPY BIRTHDAY MARGO 🌼
+                HAPPY BIRTHDAY MARGO <img
+  src="/daisy.png"
+  alt="daisy"
+  className="h-10 w-10 object-contain"
+/>
               </p>
 
               <h2 className="font-serif text-5xl font-bold md:text-7xl">
@@ -237,11 +253,19 @@ export default function Page() {
                 >
                   {/* FLOWERS */}
                   <div className="absolute left-4 top-4 text-4xl opacity-20">
-                    🌼
+                    <img
+  src="/daisy.png"
+  alt="daisy"
+  className="h-10 w-10 object-contain"
+/>
                   </div>
 
                   <div className="absolute bottom-4 right-4 text-5xl opacity-20">
-                    🌼
+                    <img
+  src="/daisy.png"
+  alt="daisy"
+  className="h-10 w-10 object-contain"
+/>
                   </div>
 
                   <div className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
