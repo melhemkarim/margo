@@ -24,6 +24,22 @@ const schedule = [
   },
 ];
 
+
+const fallingFlowers = [
+  { left: "5%", duration: 12, delay: 0 },
+  { left: "12%", duration: 14, delay: 2 },
+  { left: "20%", duration: 11, delay: 1 },
+  { left: "28%", duration: 16, delay: 3 },
+  { left: "36%", duration: 13, delay: 0 },
+  { left: "44%", duration: 15, delay: 4 },
+  { left: "52%", duration: 12, delay: 2 },
+  { left: "60%", duration: 17, delay: 1 },
+  { left: "68%", duration: 14, delay: 5 },
+  { left: "76%", duration: 13, delay: 2 },
+  { left: "84%", duration: 16, delay: 0 },
+  { left: "92%", duration: 15, delay: 3 },
+];
+
 export default function Page() {
   const [opened, setOpened] = useState(false);
   const [showSchedule, setShowSchedule] = useState(false);
@@ -62,30 +78,32 @@ export default function Page() {
       <div className="absolute bottom-[-200px] right-[-200px] h-[500px] w-[500px] rounded-full bg-pink-200/30 blur-3xl" />
 
       {/* FALLING FLOWERS */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {[...Array(35)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-2xl md:text-4xl opacity-70"
-            initial={{
-              y: -100,
-              x: Math.random() * window.innerWidth,
-            }}
-            animate={{
-              y: "120vh",
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 10 + Math.random() * 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "linear",
-            }}
-          >
-            🌼
-          </motion.div>
-        ))}
-      </div>
+<div className="pointer-events-none absolute inset-0 overflow-hidden">
+  {fallingFlowers.map((flower, i) => (
+    <motion.div
+      key={i}
+      className="absolute text-2xl opacity-70 md:text-4xl"
+      style={{
+        left: flower.left,
+      }}
+      initial={{
+        y: -100,
+      }}
+      animate={{
+        y: "120vh",
+        rotate: [0, 360],
+      }}
+      transition={{
+        duration: flower.duration,
+        repeat: Infinity,
+        delay: flower.delay,
+        ease: "linear",
+      }}
+    >
+      🌼
+    </motion.div>
+  ))}
+</div>
 
       {/* ENVELOPE INTRO */}
       <AnimatePresence>
