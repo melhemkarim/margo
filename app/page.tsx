@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
-
+import Image from "next/image";
 const schedule = [
   {
     time: "10:30 AM",
@@ -20,7 +20,7 @@ const schedule = [
     time: "11:30 AM — 12:00 PM",
     title: "LE CAMP",
     
-    emoji: "🌼",
+    
   },
 ];
 
@@ -100,10 +100,13 @@ export default function Page() {
         ease: "linear",
       }}
     >
-      <img
+  <Image
   src="/daisy.png"
   alt="daisy"
-  className="h-10 w-10 object-contain"
+  width={40}
+  height={40}
+  priority
+  className="object-contain"
 />
     </motion.div>
   ))}
@@ -253,18 +256,24 @@ export default function Page() {
                 >
                   {/* FLOWERS */}
                   <div className="absolute left-4 top-4 text-4xl opacity-20">
-                    <img
+<Image
   src="/daisy.png"
   alt="daisy"
-  className="h-10 w-10 object-contain"
+  width={40}
+  height={40}
+  priority
+  className="object-contain"
 />
                   </div>
 
                   <div className="absolute bottom-4 right-4 text-5xl opacity-20">
-                    <img
+<Image
   src="/daisy.png"
   alt="daisy"
-  className="h-10 w-10 object-contain"
+  width={48}
+  height={48}
+  priority
+  className="object-contain"
 />
                   </div>
 
@@ -301,19 +310,25 @@ export default function Page() {
 >
   {/* FLOWERS */}
   <div className="absolute left-5 top-5 opacity-20">
-    <img
-      src="/daisy.png"
-      alt="daisy"
-      className="h-12 w-12 object-contain"
-    />
+   <Image
+  src="/daisy.png"
+  alt="daisy"
+  width={40}
+  height={40}
+  priority
+  className="object-contain"
+/>
   </div>
 
   <div className="absolute bottom-5 right-5 opacity-20">
-    <img
-      src="/daisy.png"
-      alt="daisy"
-      className="h-14 w-14 object-contain"
-    />
+   <Image
+  src="/daisy.png"
+  alt="daisy"
+  width={48}
+  height={48}
+  priority
+  className="object-contain"
+/>
   </div>
 
   <p className="mb-4 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
