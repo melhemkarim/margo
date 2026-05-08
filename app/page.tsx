@@ -1,65 +1,268 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import confetti from "canvas-confetti";
+
+const schedule = [
+  {
+    time: "10:30 AM",
+    title: "PICK U UP FROM HOME",
+    emoji: "🚗",
+  },
+  {
+    time: "11:00 AM",
+    title: "BREAKFAST",
+    
+    emoji: "☕",
+  },
+  {
+    time: "11:30 AM — 12:00 PM",
+    title: "LE CAMP",
+    
+    emoji: "🌼",
+  },
+];
+
+export default function Page() {
+  const [opened, setOpened] = useState(false);
+  const [showSchedule, setShowSchedule] = useState(false);
+
+  const launchConfetti = () => {
+    confetti({
+      particleCount: 200,
+      spread: 120,
+      origin: { y: 0.6 },
+    });
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      confetti({
+        particleCount: 2,
+        spread: 80,
+        startVelocity: 10,
+        ticks: 200,
+        origin: {
+          x: Math.random(),
+          y: -0.1,
+        },
+        colors: ["#f4d35e", "#ffffff", "#ffe8a3"],
+      });
+    }, 600);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen overflow-hidden bg-[#fffdf6] text-[#3f3a32]">
+
+      {/* BACKGROUND GLOWS */}
+      <div className="absolute left-[-200px] top-[-200px] h-[500px] w-[500px] rounded-full bg-yellow-200/40 blur-3xl" />
+      <div className="absolute bottom-[-200px] right-[-200px] h-[500px] w-[500px] rounded-full bg-pink-200/30 blur-3xl" />
+
+      {/* FALLING FLOWERS */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {[...Array(35)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-2xl md:text-4xl opacity-70"
+            initial={{
+              y: -100,
+              x: Math.random() * window.innerWidth,
+            }}
+            animate={{
+              y: "120vh",
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 10,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "linear",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            🌼
+          </motion.div>
+        ))}
+      </div>
+
+      {/* ENVELOPE INTRO */}
+      <AnimatePresence>
+        {!opened && (
+          <motion.section
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 z-50 flex items-center justify-center bg-[#fffdf6]"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative cursor-pointer"
+              onClick={() => setOpened(true)}
+            >
+              <div className="flex h-[220px] w-[320px] items-center justify-center rounded-2xl border border-[#eadca8] bg-white shadow-2xl">
+                <div className="text-center">
+                  <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[#9b8e73]">
+                    Open Invitation
+                  </p>
+
+                  <h1 className="font-serif text-4xl">
+                    Margo’s Day 🌼
+                  </h1>
+
+                  <p className="mt-4 text-sm text-[#6f6758]">
+                    Click to open
+                  </p>
+                </div>
+              </div>
+
+              
+            </motion.div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      {/* MAIN CONTENT */}
+      <AnimatePresence mode="wait">
+        {opened && !showSchedule && (
+          <motion.section
+            key="home"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 1 }}
+            className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center"
+          >
+
+            {/* HAPPY BIRTHDAY */}
+            <p className="mb-6 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
+              HAPPY BIRTHDAY MARGO 🌼
+            </p>
+
+            {/* TITLE */}
+            <motion.h1
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1 }}
+              className="font-serif text-5xl font-bold leading-none sm:text-6xl md:text-[9rem]"
+            >
+              MARGO’S DAY
+            </motion.h1>
+
+            {/* SUBTITLE */}
+            <p className="mx-auto mt-8 max-w-2xl px-2 text-base leading-relaxed text-[#6f6758] sm:text-lg md:text-2xl">
+              A dreamy birthday escape 
+            </p>
+
+            
+
+            {/* CAKE */}
+            <motion.div
+              animate={{ rotate: [0, 2, -2, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="mt-12 text-7xl md:text-8xl"
+            >
+              🎂
+            </motion.div>
+
+            {/* BUTTON */}
+            <button
+              onClick={() => setShowSchedule(true)}
+              className="mt-12 rounded-full bg-[#f4d35e] px-8 py-5 text-xs font-black tracking-[0.25em] text-[#3d372b] shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#f1c93b] sm:text-sm"
+            >
+              CHECK THE SCHEDULE
+            </button>
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      {/* SCHEDULE PAGE */}
+      <AnimatePresence>
+        {opened && showSchedule && (
+          <motion.section
+            key="schedule"
+            initial={{ opacity: 0, x: 120 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="relative min-h-screen px-5 py-20 md:px-10"
+          >
+            {/* BACK BUTTON */}
+            <button
+              onClick={() => setShowSchedule(false)}
+              className="mb-10 rounded-full border border-[#eadca8] bg-white/60 px-5 py-3 text-sm shadow-lg backdrop-blur-xl transition hover:scale-105"
+            >
+              ← Back
+            </button>
+
+            {/* HEADER */}
+            <div className="mx-auto mb-20 max-w-5xl text-center">
+              <p className="mb-4 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
+                HAPPY BIRTHDAY MARGO 🌼
+              </p>
+
+              <h2 className="font-serif text-5xl font-bold md:text-7xl">
+                The Schedule
+              </h2>
+            </div>
+
+            {/* SCHEDULE CARDS */}
+            <div className="mx-auto max-w-5xl space-y-8">
+              {schedule.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2 }}
+                  className="relative overflow-hidden rounded-[35px] border border-white/50 bg-white/60 p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] backdrop-blur-2xl md:p-10"
+                >
+                  {/* FLOWERS */}
+                  <div className="absolute left-4 top-4 text-4xl opacity-20">
+                    🌼
+                  </div>
+
+                  <div className="absolute bottom-4 right-4 text-5xl opacity-20">
+                    🌼
+                  </div>
+
+                  <div className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+                    <div className="w-full">
+
+                      {/* TIME */}
+                      <p className="mb-4 text-xl font-extrabold uppercase tracking-[0.25em] text-[#7c6f56] md:text-2xl">
+                        {item.time}
+                      </p>
+
+                      {/* TITLE */}
+                      <h3 className="text-3xl font-black leading-tight md:text-5xl">
+                        {item.title}
+                      </h3>
+
+                     
+                    </div>
+
+                    {/* EMOJI */}
+                    <div className="self-end text-6xl md:self-auto md:text-7xl">
+                      {item.emoji}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CONFETTI BUTTON */}
+            <div className="mt-20 flex justify-center">
+              <button
+                onClick={launchConfetti}
+                className="rounded-full bg-[#f4d35e] px-10 py-5 text-sm font-black uppercase tracking-[0.3em] text-[#3d372b] shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#f1c93b]"
+              >
+                Celebrate Margo 🎉
+              </button>
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+    </main>
   );
 }
