@@ -292,7 +292,40 @@ export default function Page() {
                 </motion.div>
               ))}
             </div>
+{/* DRESS CODE */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.6 }}
+  className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-[35px] border border-white/50 bg-white/60 p-8 text-center shadow-[0_10px_40px_rgba(0,0,0,0.08)] backdrop-blur-2xl md:p-12"
+>
+  {/* FLOWERS */}
+  <div className="absolute left-5 top-5 opacity-20">
+    <img
+      src="/daisy.png"
+      alt="daisy"
+      className="h-12 w-12 object-contain"
+    />
+  </div>
 
+  <div className="absolute bottom-5 right-5 opacity-20">
+    <img
+      src="/daisy.png"
+      alt="daisy"
+      className="h-14 w-14 object-contain"
+    />
+  </div>
+
+  <p className="mb-4 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
+    Dress Code
+  </p>
+
+  <h3 className="font-serif text-4xl font-bold md:text-6xl">
+    JEANS & A TOP
+  </h3>
+
+  
+</motion.div>
             {/* CONFETTI BUTTON */}
             <div className="mt-20 flex justify-center">
               <button
