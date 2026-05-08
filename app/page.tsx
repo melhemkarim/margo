@@ -165,12 +165,56 @@ export default function Page() {
           >
 
             {/* HAPPY BIRTHDAY */}
+            {/* PHOTO */}
+<motion.div
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  className="mb-10"
+>
+  <div className="relative">
+
+    {/* GLOW */}
+    <div className="absolute inset-0 scale-110 rounded-[40px] bg-yellow-200/30 blur-3xl" />
+
+    {/* FLOWERS */}
+    <div className="absolute -left-5 -top-5 z-20">
+      <Image
+        src="/daisy.png"
+        alt="daisy"
+        width={50}
+        height={50}
+        className="rotate-[-12deg]"
+      />
+    </div>
+
+    <div className="absolute -bottom-5 -right-5 z-20">
+      <Image
+        src="/daisy.png"
+        alt="daisy"
+        width={60}
+        height={60}
+        className="rotate-[15deg]"
+      />
+    </div>
+
+    {/* FRAME */}
+    <div className="relative rounded-[10px] border-[8px] border-white bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.15)]">
+      <div className="overflow-hidden rounded-[10px] border border-[#f4d35e]/30 bg-[#fffdf6]">
+        <Image
+          src="/margo.jpeg"
+          alt="Margo"
+          width={260}
+          height={320}
+          priority
+          className="h-[220px] w-[180px] object-contain bg-white sm:h-[260px] sm:w-[220px] md:h-[320px] md:w-[260px]"
+        />
+      </div>
+    </div>
+  </div>
+</motion.div>
             <p className="mb-6 text-xs uppercase tracking-[0.5em] text-[#9b8e73] sm:text-sm">
-              HAPPY BIRTHDAY MARGO <img
-  src="/daisy.png"
-  alt="daisy"
-  className="h-10 w-10 object-contain"
-/>
+              HAPPY BIRTHDAY MARGO
             </p>
 
             {/* TITLE */}
